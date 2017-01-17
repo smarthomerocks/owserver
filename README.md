@@ -1,6 +1,6 @@
 # rpi-owserver [![Build Status](https://travis-ci.org/hypriot/rpi-owserver.svg?branch=master)](https://travis-ci.org/hypriot/rpi-owserver)
 
-Raspberry Pi compatible Docker base image with owserver, an open source service for interconnecting with Dallas/Maxim 1-wire systems.
+Raspberry Pi compatible Docker image with owserver, an open source service for interconnecting with Dallas/Maxim 1-wire systems.
 
 ### Build Details
 - [Source Project Page](https://github.com/hypriot)
@@ -30,15 +30,28 @@ make push
 Running your Owserver image
 ---------------------------
 
-Start your image binding the external port `4304` of your containers:
+To start your image you need to bind the external port `4304` of your containers and provide owserver with the settings it needs.
+Owserver needs to know what kind of physical device that is connected to the host and the path to the device, this is provided by the environment "-e" parameters.
+The supported devicetypes are:
 
-    run --rm -p 4304:4304 --privileged -e I2C=ALL:ALL hypriot/rpi-owserver
+* I2C - i2c connected boards, e.g. [AbioWire](http://www.axiris.eu/download/abiowire/AbioWire_um_en_us_2013_07_09.pdf)
+* SERIAL - serialport (RS-232) connected adapters, e.g. [Maxim DS9097U](https://www.maximintegrated.com/en/products/digital/ibutton/DS9097U-S09.html)
+* USB - USB connected adapters, e.g. [DS9490](http://pdfserv.maximintegrated.com/en/ds/DS9490-DS9490R.pdf)
+* FAKE - a emulation-mode where owserver emulates the presence of 1-wire devices. Good for mocking and testing softwares when you don't have "the real deal".
 
-    run --rm -p 4304:4304 --privileged -e SERIAL=/dev/ttyUSB0 hypriot/rpi-owserver
+Here are some examples on how you could start containers:
 
-    run --rm -p 4304:4304 --privileged -e USB=/dev/ttyUSB0 hypriot/rpi-owserver
+    # start owserver using a i2c-adapter, scanning for all available adapters.
+    docker run -d -p 4304:4304 --privileged -e I2C=ALL:ALL hypriot/rpi-owserver
 
-    run --rm -p 4304:4304 --privileged -e FAKE=DS18S20,DS18S20,DS2408 hypriot/rpi-owserver
+    # start owserver using a serial-adapter on device "/dev/ttyS0"
+    docker run -d -p 4304:4304 --privileged -e SERIAL=/dev/ttyUSB0 hypriot/rpi-owserver
+
+    # start owserver using a USB-adapter on device "/dev/ttyUSB0"
+    docker run -d -p 4304:4304 --privileged -e USB=/dev/ttyUSB0 hypriot/rpi-owserver
+
+    # start owserver using a FAKE-adapter (emulates real devices), in this case we emulates two DS18S20 temperature sensors and one DS2408 8-Channel Addressable Switch
+    docker run -d -p 4304:4304 --privileged -e FAKE=DS18S20,DS18S20,DS2408 hypriot/rpi-owserver
 
 
 Query 1-wire bus within container
@@ -48,7 +61,21 @@ You can use the OWFS commands to query the 1-wire bus within the container in ca
 
   ```
   docker exec -it <owserver-container-name> bash
-  
+  root@53ae0aca3603:/# owdir
+  /10.67C6697351FF
+  /10.4AEC29CDBAAB
+  /29.F2FBE3467CC2
+  /bus.0
+  /uncached
+  /settings
+  /system
+  /statistics
+  /structure
+  /simultaneous
+  /alarm
+
+  root@53ae0aca3603:/# owget /10.67C6697351FF/temperature
+     66.3067root@53ae0aca3603:/#
   ```
 
 ## License
