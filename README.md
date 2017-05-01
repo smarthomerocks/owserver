@@ -42,16 +42,16 @@ The supported devicetypes are:
 Here are some examples on how you could start containers:
 
     # start owserver using a i2c-adapter, scanning for all available adapters.
-    docker run -d -p 4304:4304 --privileged -e I2C=ALL:ALL hypriot/rpi-owserver
+    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e I2C=ALL:ALL hypriot/rpi-owserver
 
     # start owserver using a serial-adapter on device "/dev/ttyS0"
-    docker run -d -p 4304:4304 --privileged -e SERIAL=/dev/ttyUSB0 hypriot/rpi-owserver
+    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e SERIAL=/dev/ttyUSB0 hypriot/rpi-owserver
 
     # start owserver using a USB-adapter on device "/dev/ttyUSB0"
-    docker run -d -p 4304:4304 --privileged -e USB=/dev/ttyUSB0 hypriot/rpi-owserver
+    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e USB=/dev/ttyUSB0 hypriot/rpi-owserver
 
     # start owserver using a FAKE-adapter (emulates real devices), in this case we emulates two DS18S20 temperature sensors and one DS2408 8-Channel Addressable Switch
-    docker run -d -p 4304:4304 --privileged -e FAKE=DS18S20,DS18S20,DS2408 hypriot/rpi-owserver
+    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e FAKE=DS18S20,DS18S20,DS2408 hypriot/rpi-owserver
 
 
 Query 1-wire bus within container

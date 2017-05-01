@@ -1,0 +1,7 @@
+Package: *
+Pin: release o=Raspbian,a=stable
+Pin-Priority: 500
+
+Package: *
+Pin: release o=Raspbian,a=testing
+Pin-Priority: 300
