@@ -1,12 +1,11 @@
-# rpi-owserver [![Build Status](https://travis-ci.org/hypriot/rpi-owserver.svg?branch=master)](https://travis-ci.org/hypriot/rpi-owserver)
+# rpi-owserver [![Build Status](https://travis-ci.org/smarthomerocks/rpi-owserver.svg?branch=master)](https://travis-ci.org/smarthomerocks/rpi-owserver)
 
-Raspberry Pi compatible Docker image with owserver, an open source service for interconnecting with Dallas/Maxim 1-wire systems.
+Raspberry Pi compatible Docker image with owserver, an open source service for interconnecting with Dallas Semiconductor/Maxim 1-wire systems.
 
 ### Build Details
-- [Source Project Page](https://github.com/hypriot)
-- [Source Repository](https://github.com/hypriot/rpi-owserver)
-- [Dockerfile](https://github.com/hypriot/rpi-owserver/blob/master/Dockerfile)
-- [DockerHub] (https://registry.hub.docker.com/u/hypriot/rpi-owserver/)
+- [Source Repository](https://github.com/smarthomerocks/rpi-owserver)
+- [Dockerfile](https://github.com/smarthomerocks/rpi-owserver/blob/master/Dockerfile)
+- [DockerHub] (https://registry.hub.docker.com/u/smarthomerocks/rpi-owserver/)
 
 
 #### Build the Docker Image
@@ -82,7 +81,7 @@ You can use the OWFS commands to query the 1-wire bus within the container in ca
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Hypriot
+Copyright (c) 2015 Liquidbytes.se
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

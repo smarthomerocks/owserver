@@ -1,5 +1,5 @@
-DOCKER_IMAGE_VERSION=3.1p5-1
-DOCKER_IMAGE_NAME=hypriot/rpi-owserver
+DOCKER_IMAGE_VERSION=3.2p3
+DOCKER_IMAGE_NAME=smarthomerocks/owserver
 DOCKER_IMAGE_TAGNAME=$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_VERSION)
 
 default: build
@@ -13,8 +13,7 @@ push:
 	docker push $(DOCKER_IMAGE_NAME)
 
 test:
-	docker run --rm $(DOCKER_IMAGE_TAGNAME) /bin/echo "Success."
+	docker run --rm --privileged $(DOCKER_IMAGE_TAGNAME) /bin/echo "Success."
 
 version:
-	docker run --rm $(DOCKER_IMAGE_TAGNAME) owserver --version
-
+	docker run --rm --privileged $(DOCKER_IMAGE_TAGNAME) owserver --version

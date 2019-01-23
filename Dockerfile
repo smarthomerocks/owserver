@@ -1,24 +1,32 @@
-# Pull base image
-FROM resin/rpi-raspbian:jessie
-MAINTAINER Henrik Östman <trycoon@gmail.com>
+# Pull build image
+FROM balenalib/raspberrypi3:jessie-build as builder
+LABEL maintainer="Henrik  ^ stman"
 
-ENV OWFS_VERSION=3.1p5-1
+RUN install_packages libtool automake libftdi-dev libusb-dev libusb-1.0.0-dev uthash-dev
+RUN git clone https://github.com/owfs/owfs.git\
+    && cd owfs\
+    && ./bootstrap\
+    && ./configure --disable-owftpd --disable-owhttpd --disable-owexternal --disable-ownet --disable-owcapi --disable-owperl --disable-owphp --disable-owpython --disable-owtcl --disable-owtap --disable-owmon --disable-owfs\
+    && make -j4 install
 
-# Setup external package-sources and install required softwares
-ADD owserver-pinning /etc/apt/preferences.d/owserver-pinning
-RUN echo "deb http://mirrordirector.raspbian.org/raspbian/ testing main contrib non-free rpi" | sudo tee /etc/apt/sources.list.d/owserver.list && \
-    apt-get update && apt-get install -t testing -y \
-    owserver=${OWFS_VERSION} \
-    ow-shell=${OWFS_VERSION} \
-    --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
+# Pull runtime image
+FROM balenalib/raspberrypi3:jessie-run
+LABEL maintainer="Henrik  ^ stman"
+
+ENV UDEV=1
+ENV PATH="/owfs/bin:${PATH}"
+ENV LD_LIBRARY_PATH="/owfs/lib:${LD_LIBRARY_PATH}"
+
+RUN install_packages libftdi1
 
 ADD owfs.templ /owfs.templ
-
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
 
 # TCP socket
 EXPOSE 4304
+
+WORKDIR /owfs
+COPY --from=builder /opt/owfs .
 
 CMD ["/run.sh"]
