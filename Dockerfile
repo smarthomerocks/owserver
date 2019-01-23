@@ -1,6 +1,6 @@
 # Pull build image
 FROM balenalib/raspberrypi3:jessie-build as builder
-LABEL maintainer="Henrik  ^ stman"
+LABEL maintainer="Henrik Östman"
 
 RUN install_packages libtool automake libftdi-dev libusb-dev libusb-1.0.0-dev uthash-dev
 RUN git clone https://github.com/owfs/owfs.git\
@@ -11,7 +11,7 @@ RUN git clone https://github.com/owfs/owfs.git\
 
 # Pull runtime image
 FROM balenalib/raspberrypi3:jessie-run
-LABEL maintainer="Henrik  ^ stman"
+LABEL maintainer="Henrik Östman"
 
 ENV UDEV=1
 ENV PATH="/owfs/bin:${PATH}"

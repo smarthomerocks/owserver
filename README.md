@@ -5,7 +5,7 @@ Raspberry Pi compatible Docker image with owserver, an open source service for i
 ### Build Details
 - [Source Repository](https://github.com/smarthomerocks/rpi-owserver)
 - [Dockerfile](https://github.com/smarthomerocks/rpi-owserver/blob/master/Dockerfile)
-- [DockerHub] (https://registry.hub.docker.com/u/smarthomerocks/rpi-owserver/)
+- [DockerHub](https://cloud.docker.com/u/smarthomerocks/repository/docker/smarthomerocks/owserver)
 
 
 #### Build the Docker Image
@@ -81,7 +81,7 @@ You can use the OWFS commands to query the 1-wire bus within the container in ca
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Liquidbytes.se
+Copyright (c) 2017 Liquidbytes.se
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

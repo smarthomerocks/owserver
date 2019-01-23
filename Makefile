@@ -1,4 +1,7 @@
-DOCKER_IMAGE_VERSION=3.2p3
+DOCKER_IMAGE_VERSION=$(curl --silent "https://api.github.com/repos/owfs/owfs/releases/latest" |
+    grep '"tag_name":' |
+    sed -E 's/.*"([^"]+)".*/\1/') # Pluck JSON value
+
 DOCKER_IMAGE_NAME=smarthomerocks/owserver
 DOCKER_IMAGE_TAGNAME=$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_VERSION)
 
