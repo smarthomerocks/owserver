@@ -8,9 +8,11 @@ default: build
 
 build:
 	@echo "building image: ${DOCKER_IMAGE_TAGNAME_ARMHF}"
-	docker build -t ${DOCKER_IMAGE_TAGNAME_ARMHF} -t ${DOCKER_IMAGE_NAME_ARMHF}:latest -f armhf/Dockerfile
+	docker build -t ${DOCKER_IMAGE_TAGNAME_ARMHF} -f armhf/Dockerfile
+	docker tag ${DOCKER_IMAGE_TAGNAME_ARMHF} ${DOCKER_IMAGE_NAME_ARMHF}:latest
 	@echo "building image: ${DOCKER_IMAGE_TAGNAME_AMD64}"
-	docker build -t ${DOCKER_IMAGE_TAGNAME_AMD64} -t ${DOCKER_IMAGE_NAME_AMD64}:latest -f amd64/Dockerfile
+	docker build -t ${DOCKER_IMAGE_TAGNAME_AMD64} -f amd64/Dockerfile
+	docker tag ${DOCKER_IMAGE_TAGNAME_ARMHF} ${DOCKER_IMAGE_NAME_AMD64}:latest
 
 push:
 	docker push ${DOCKER_IMAGE_TAGNAME_ARMHF}
