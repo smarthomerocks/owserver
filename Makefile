@@ -15,7 +15,7 @@ build-amd64:
 
 travis:
   	if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-	    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+	    #echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 		@echo "building image: smarthomerocks/owserver-armhf:$(DOCKER_IMAGE_VERSION)" && \
 		docker build -t smarthomerocks/owserver-armhf:$(DOCKER_IMAGE_VERSION) -f armhf/Dockerfile . && \
 		docker tag smarthomerocks/owserver-armhf:$(DOCKER_IMAGE_VERSION) smarthomerocks/owserver-armhf:latest && \
