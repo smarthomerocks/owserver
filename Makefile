@@ -19,11 +19,7 @@ push:
 	docker push smarthomerocks/owserver-amd64:latest	
 
 test:
-	docker run --rm --privileged smarthomerocks/owserver-armhf:$(DOCKER_IMAGE_VERSION) /bin/echo "Success."
-	
-	docker run --rm --privileged smarthomerocks/owserver-amd64:$(DOCKER_IMAGE_VERSION) /bin/echo "Success."
+	docker run --rm --privileged smarthomerocks/owserver-armhf:$(DOCKER_IMAGE_VERSION) /bin/echo "Success." && docker run --rm --privileged smarthomerocks/owserver-amd64:$(DOCKER_IMAGE_VERSION) /bin/echo "Success."
 
 version:
-	docker run --rm --privileged smarthomerocks/owserver-armhf:$(DOCKER_IMAGE_VERSION) owserver --version
-	
-	docker run --rm --privileged smarthomerocks/owserver-amd64:$(DOCKER_IMAGE_VERSION) owserver --version
+	docker run --rm --privileged smarthomerocks/owserver-armhf:$(DOCKER_IMAGE_VERSION) owserver --version && docker run --rm --privileged smarthomerocks/owserver-amd64:$(DOCKER_IMAGE_VERSION) owserver --version
