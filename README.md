@@ -1,10 +1,10 @@
-# rpi-owserver [![Build Status](https://travis-ci.org/smarthomerocks/rpi-owserver.svg?branch=master)](https://travis-ci.org/smarthomerocks/rpi-owserver)
+# owserver [![Build Status](https://travis-ci.org/smarthomerocks/owserver.svg?branch=master)](https://travis-ci.org/smarthomerocks/owserver)
 
-Raspberry Pi compatible Docker image with owserver, an open source service for interconnecting with Dallas Semiconductor/Maxim 1-wire systems.
+Docker image for owserver, an open source service for interconnecting with Dallas Semiconductor/Maxim 1-wire systems.
 
 ### Build Details
-- [Source Repository](https://github.com/smarthomerocks/rpi-owserver)
-- [Dockerfile](https://github.com/smarthomerocks/rpi-owserver/blob/master/Dockerfile)
+- [Source Repository](https://github.com/smarthomerocks/owserver)
+- [Dockerfile](https://github.com/smarthomerocks/owserver/blob/master/Dockerfile)
 - [DockerHub](https://cloud.docker.com/u/smarthomerocks/repository/docker/smarthomerocks/owserver)
 
 
@@ -41,16 +41,16 @@ The supported devicetypes are:
 Here are some examples on how you could start containers:
 
     # start owserver using a i2c-adapter, scanning for all available adapters.
-    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e I2C=ALL:ALL hypriot/rpi-owserver
+    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e I2C=ALL:ALL smarthomerocks/owserver-armhf
 
     # start owserver using a serial-adapter on device "/dev/ttyS0"
-    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e SERIAL=/dev/ttyUSB0 hypriot/rpi-owserver
+    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e SERIAL=/dev/ttyUSB0 smarthomerocks/owserver-armhf
 
     # start owserver using a USB-adapter on device "/dev/ttyUSB0"
-    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e USB=/dev/ttyUSB0 hypriot/rpi-owserver
+    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e USB=/dev/ttyUSB0 smarthomerocks/owserver-armhf
 
     # start owserver using a FAKE-adapter (emulates real devices), in this case we emulates two DS18S20 temperature sensors and one DS2408 8-Channel Addressable Switch
-    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e FAKE=DS18S20,DS18S20,DS2408 hypriot/rpi-owserver
+    docker run -d -p 4304:4304 --privileged --restart on-failure:5 -e FAKE=DS18S20,DS18S20,DS2408 smarthomerocks/owserver-armhf
 
 
 Query 1-wire bus within container
