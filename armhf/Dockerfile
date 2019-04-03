@@ -17,7 +17,7 @@ ENV UDEV=1
 ENV PATH="/owfs/bin:${PATH}"
 ENV LD_LIBRARY_PATH="/owfs/lib:${LD_LIBRARY_PATH}"
 
-RUN install_packages libftdi1
+RUN install_packages libftdi1 libusb-1.0.0
 
 ADD owfs.templ /owfs.templ
 ADD run.sh /run.sh
