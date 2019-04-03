@@ -4,7 +4,6 @@ Docker image for owserver, an open source service for interconnecting with Dalla
 
 ### Build Details
 - [Source Repository](https://github.com/smarthomerocks/owserver)
-- [Dockerfile](https://github.com/smarthomerocks/owserver/blob/master/Dockerfile)
 - [DockerHub](https://cloud.docker.com/u/smarthomerocks/repository/docker/smarthomerocks/owserver)
 
 
@@ -34,7 +33,7 @@ Owserver needs to know what kind of physical device that is connected to the hos
 The supported devicetypes are:
 
 * I2C - i2c connected boards, e.g. [AbioWire](http://www.axiris.eu/download/abiowire/AbioWire_um_en_us_2013_07_09.pdf)
-* SERIAL - serialport (RS-232) connected adapters, e.g. [Maxim DS9097U](https://www.maximintegrated.com/en/products/digital/ibutton/DS9097U-S09.html)
+* SERIAL - serialport (RS-232) connected adapters, e.g. [Maxim DS9097U](https://www.maximintegrated.com/en/products/ibutton/ibutton/DS9097U-S09.html)
 * USB - USB connected adapters, e.g. [DS9490](http://pdfserv.maximintegrated.com/en/ds/DS9490-DS9490R.pdf)
 * FAKE - a emulation-mode where owserver emulates the presence of 1-wire devices. Good for mocking and testing softwares when you don't have "the real deal".
 
