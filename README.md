@@ -4,7 +4,7 @@ Docker image for owserver, an open source service for interconnecting with Dalla
 
 ### Build Details
 - [Source Repository](https://github.com/smarthomerocks/owserver)
-- [DockerHub](https://cloud.docker.com/u/smarthomerocks/repository/docker/smarthomerocks/owserver)
+- [DockerHub](https://hub.docker.com/r/smarthomerocks/owserver)
 
 
 #### Build the Docker Image
