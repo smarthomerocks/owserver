@@ -1,5 +1,5 @@
 # Pull build image
-FROM balenalib/raspberrypi3:stretch-build as builder
+FROM balenalib/raspberrypi3:buster-build as builder
 LABEL maintainer="Henrik Östman"
 
 RUN install_packages libtool automake libftdi-dev libusb-dev libusb-1.0.0-dev uthash-dev
@@ -10,7 +10,7 @@ RUN git clone https://github.com/owfs/owfs.git\
     && make -j4 install
 
 # Pull runtime image
-FROM balenalib/raspberrypi3:stretch-run
+FROM balenalib/raspberrypi3:buster-run
 LABEL maintainer="Henrik Östman"
 
 ENV UDEV=1
